@@ -11,49 +11,80 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <div class="container">
-      <div class="weather-wrap">
-        <h1>New York</h1>
-        <div class="row">
-          <div class="col-6">
-            <ul>
-              <li>Saturday 05:00</li>
-              <li>Description</li>
-            </ul>
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="search"
+                  placeholder="Enter city name"
+                  autocomplete="off"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Live Location"
+                  class="btn btn-success live-location-button"
+                />
+              </div>
+            </div>
+          </form>
+          <h1>New York</h1>
+          <div class="row">
+            <div class="col-6">
+              <ul>
+                <li>Saturday 05:00</li>
+                <li>Description</li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Humidity:</li>
+                <li>Windspeed:</li>
+              </ul>
+            </div>
           </div>
-          <div class="col-6">
-            <ul>
-              <li>Humidity:</li>
-              <li>Windspeed:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="d flex temperature">
-              <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAUhJREFUeNrt230NgzAQh2GkIAUJyJgMJCABCZNQKcxBHdyOpFkyEkYGV9oL75Lff2Rwz8pXe2tEpLlzGgAAAAAAAAAAYHsDg4+8Hp1m0ATNrJGNzGmbZdvOZN+lAFLRkyb+KHgvMX1H5wYgFR5OFL2VcATiMgA9uFbzzFD4Oss+2qoA9ID6k0P9yKnRVwGgBzJeWPg6Y1GAdIGSwpmKAFRS/C5CFoDCw/6v08EcIF3wpNL0WQHSrS5WDBDXt0hrgGfFxX+eE7IApCc8cZIuB0BwBBBMAZz9+l+jwApgcggwWQJEhwDRBMDp8P+cBhYAg2OAwQIgOAYIFgCzY4DZAkBcB4C7AywvcIwAAADgNsiDEI/CvAzxOsyECFNiTIoyLc7CCEtjLI6yPE6DBC0yNEnRJkejJK2yNEvTLs8fJgAAAAAAAADg1nkDlR7XfJiH1ggAAAAASUVORK5CYII="
-                alt="sunny"
-              />
-              <span>12</span> <span class="units">°C | °F</span>
+          <div class="row">
+            <div class="col-6">
+              <div class="d flex temperature">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAUhJREFUeNrt230NgzAQh2GkIAUJyJgMJCABCZNQKcxBHdyOpFkyEkYGV9oL75Lff2Rwz8pXe2tEpLlzGgAAAAAAAAAAYHsDg4+8Hp1m0ATNrJGNzGmbZdvOZN+lAFLRkyb+KHgvMX1H5wYgFR5OFL2VcATiMgA9uFbzzFD4Oss+2qoA9ID6k0P9yKnRVwGgBzJeWPg6Y1GAdIGSwpmKAFRS/C5CFoDCw/6v08EcIF3wpNL0WQHSrS5WDBDXt0hrgGfFxX+eE7IApCc8cZIuB0BwBBBMAZz9+l+jwApgcggwWQJEhwDRBMDp8P+cBhYAg2OAwQIgOAYIFgCzY4DZAkBcB4C7AywvcIwAAADgNsiDEI/CvAzxOsyECFNiTIoyLc7CCEtjLI6yPE6DBC0yNEnRJkejJK2yNEvTLs8fJgAAAAAAAADg1nkDlR7XfJiH1ggAAAAASUVORK5CYII="
+                  alt="sunny"
+                />
+                <span>12</span> <span class="units">°C | °F</span>
+              </div>
             </div>
           </div>
         </div>
+        <small>
+          <a
+            href="https://github.com/maryam-sulayman/weather-app"
+            target="_blank"
+            >Open-source</a
+          >
+          code by Maryam Sulayman, Hosted on
+          <a
+            href="https://app.netlify.com/teams/maryam-sulayman/overview?_ga=2.123110349.794237148.1680890977-1635298606.1680890977&_gac=1.58587608.1680890977.Cj0KCQjw_r6hBhDdARIsAMIDhV_VA8a7RT9BCD2exhaMWuGz_ZmR4S0Ku6U2SiiI50kzZYuY0PxONn0aAnLcEALw_wcB&_gl=1%2Ablq272%2A_gcl_aw%2AR0NMLjE2ODA4OTA5NzcuQ2owS0NRandfcjZoQmhEZEFSSXNBTUlEaFZfVkE4YTdSVDlCQ0QyZXhoYU1XdUd6X1ptUjRTMEt1NlUyU2lpSTUwa3paWXVZMFB4T05uMGFBbkxjRUFMd193Y0I."
+            target="_blank"
+            >Netlify.</a
+          >
+        </small>
       </div>
-      <small>
-        <a href="https://github.com/maryam-sulayman/weather-app" target="_blank"
-          >Open-source</a
-        >
-        code by Maryam Sulayman, Hosted on
-        <a
-          href="https://app.netlify.com/teams/maryam-sulayman/overview?_ga=2.123110349.794237148.1680890977-1635298606.1680890977&_gac=1.58587608.1680890977.Cj0KCQjw_r6hBhDdARIsAMIDhV_VA8a7RT9BCD2exhaMWuGz_ZmR4S0Ku6U2SiiI50kzZYuY0PxONn0aAnLcEALw_wcB&_gl=1%2Ablq272%2A_gcl_aw%2AR0NMLjE2ODA4OTA5NzcuQ2owS0NRandfcjZoQmhEZEFSSXNBTUlEaFZfVkE4YTdSVDlCQ0QyZXhoYU1XdUd6X1ptUjRTMEt1NlUyU2lpSTUwa3paWXVZMFB4T05uMGFBbkxjRUFMd193Y0I."
-          target="_blank"
-          >Netlify.</a
-        >
-      </small>
     </div>
 
     <script src="src/app.js"></script>
