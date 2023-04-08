@@ -8,6 +8,15 @@ ul {
   margin-bottom: 20px;
   margin-top: 10px;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 .weather-app-wrapper {
   max-width: 600px;
   margin: 30px auto;
