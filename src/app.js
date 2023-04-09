@@ -19,7 +19,7 @@ function formatDate() {
     minutes = `0${minutes}`;
   }
   let currentDateAndTime = document.querySelector("#date-and-time");
-  currentDateAndTime.innerHTML = `${day} ${hours}:${minutes}`;
+  currentDateAndTime.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
 }
 formatDate();
 
@@ -43,7 +43,14 @@ function displayWeather(response) {
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   windspeedElement.innerHTML = `Windspeed: ${windspeed} Km/h`;
   temperature.innerHTML = Math.round(response.data.main.temp);
-  console.log(response);
+}
+
+function showLiveLocation(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function liveLocation(event) {
@@ -51,16 +58,8 @@ function liveLocation(event) {
   navigator.geolocation.getCurrentPosition(showLiveLocation);
 }
 
-function showLiveLocation(position) {
-  let latitude = position.data.coord.lat;
-  let longitude = position.data.coord.lon;
-  let apiKey = "d46f1b703c43197t9d1457e4fbea3dco";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}units=metric`;
-  axios.get(apiUrl).then(displayLocation);
-}
-
 let citySearch = document.querySelector("#city-search");
 citySearch.addEventListener("submit", cityName);
 
-let currentLocation = document.querySelector("#current-location");
+let currentLocation = document.querySelector("#live-location");
 currentLocation.addEventListener("click", liveLocation);
