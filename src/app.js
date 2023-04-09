@@ -29,17 +29,18 @@ function cityName(event) {
   let city = document.querySelector("#city-name").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeather);
+  let key = "d46f1b703c43197t9d1457e4fbea3dco";
+  let iconUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
+  axios.get(iconUrl).then(displayIcon);
 }
 
 function displayWeather(response) {
   let h1 = document.querySelector("h1");
-  let description = document.querySelector("#description");
   let humidity = document.querySelector("#humidity");
   let windspeedElement = document.querySelector("#windspeed");
   let windspeed = Math.round(response.data.wind.speed);
   let temperature = document.querySelector("#temperature");
   h1.innerHTML = response.data.name;
-  description.innerHTML = response.data.weather[0].description;
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   windspeedElement.innerHTML = `Windspeed: ${windspeed} Km/h`;
   temperature.innerHTML = Math.round(response.data.main.temp);
@@ -51,6 +52,21 @@ function showLiveLocation(position) {
   let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
+  let key = "d46f1b703c43197t9d1457e4fbea3dco";
+  let iconUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${key}`;
+  axios.get(iconUrl).then(displayIcon);
+}
+
+function displayIcon(response) {
+  let description = document.querySelector("#description");
+  let icon = document.querySelector("#icon");
+  description.innerHTML = response.data.condition.description;
+  icon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  icon.setAttribute("alt", response.data.condition.icon);
+  console.log(response.data);
 }
 
 function liveLocation(event) {
@@ -63,3 +79,6 @@ citySearch.addEventListener("submit", cityName);
 
 let currentLocation = document.querySelector("#live-location");
 currentLocation.addEventListener("click", liveLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);

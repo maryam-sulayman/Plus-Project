@@ -39,6 +39,7 @@ a:hover {
   margin-left: -10px;
 }
 .temperature {
+  margin-left: -20px;
   font-size: 64px;
 }
 .units {
