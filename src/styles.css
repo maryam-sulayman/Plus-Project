@@ -48,3 +48,10 @@ a:hover {
   top: -34px;
   margin-left: -10px;
 }
+.temperature .active {
+  color: black;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
+}
