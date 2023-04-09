@@ -27,11 +27,25 @@ function cityName(event) {
   event.preventDefault();
   let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
   let city = document.querySelector("#city-name").value;
+  city = city.trim();
+  search(city);
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeather);
   let key = "d46f1b703c43197t9d1457e4fbea3dco";
   let iconUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
   axios.get(iconUrl).then(displayIcon);
+}
+function search(city) {
+  if (city) {
+    let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(displayWeather);
+    let key = "d46f1b703c43197t9d1457e4fbea3dco";
+    let iconUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
+    axios.get(iconUrl).then(displayIcon);
+  } else {
+    alert("Please enter a city");
+  }
 }
 
 function displayWeather(response) {
@@ -67,7 +81,6 @@ function displayIcon(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   icon.setAttribute("alt", response.data.condition.icon);
-  console.log(response.data);
 }
 
 function liveLocation(event) {
@@ -103,3 +116,5 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+search("Nigeria");
