@@ -61,6 +61,11 @@ function displayWeather(response) {
   temperature.innerHTML = Math.round(celsiusTemperature);
 }
 
+function liveLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showLiveLocation);
+}
+
 function showLiveLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -78,15 +83,11 @@ function displayIcon(response) {
   description.innerHTML = response.data.condition.description;
   icon.setAttribute(
     "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   icon.setAttribute("alt", response.data.condition.icon);
 }
 
-function liveLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(showLiveLocation);
-}
 function convertToFahrenheit(event) {
   event.preventDefault();
   celsiusLink.classList.remove("active");
