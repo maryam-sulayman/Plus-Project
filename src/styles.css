@@ -1,5 +1,6 @@
 body {
-  background-color: antiquewhite;
+  background-image: url("../images/image3.jpg");
+  background-position: right;
 }
 ul {
   list-style: none;
