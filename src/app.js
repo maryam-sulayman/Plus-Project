@@ -82,8 +82,7 @@ function displayIcon(response) {
   );
   icon.setAttribute("alt", response.data.condition.icon);
 }
-function liveLocation(event) {
-  event.preventDefault();
+function liveLocation() {
   navigator.geolocation.getCurrentPosition(showLiveLocation);
 }
 
