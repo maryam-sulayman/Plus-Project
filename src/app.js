@@ -81,9 +81,7 @@ function displayIcon(response) {
     `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   icon.setAttribute("alt", response.data.condition.icon);
-  navigator.geolocation.getCurrentPosition(showLiveLocation);
 }
-
 function liveLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showLiveLocation);
