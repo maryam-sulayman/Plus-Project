@@ -43,6 +43,8 @@ function search(city) {
     let key = "d46f1b703c43197t9d1457e4fbea3dco";
     let iconUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
     axios.get(iconUrl).then(displayIcon);
+    let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${key}`;
+    axios.get(forecastUrl).then(displayForecast);
   } else {
     alert("Please enter a city");
   }
@@ -66,10 +68,16 @@ function showLiveLocation(position) {
   let longitude = position.coords.longitude;
   let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
   axios.get(apiUrl).then(displayWeather);
+
   let key = "d46f1b703c43197t9d1457e4fbea3dco";
   let iconUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${key}`;
+
   axios.get(iconUrl).then(displayIcon);
+
+  let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${key}`;
+  axios.get(forecastUrl).then(displayForecast);
 }
 
 function displayIcon(response) {
@@ -101,6 +109,30 @@ function convertToCelsius(event) {
   fahrenheitLink.classList.remove("active");
   let temperature = document.querySelector("#temperature");
   temperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thur"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-3">
+      ${day}
+        <img
+          src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+          width="60px"
+        />
+        <span> 18° 23°</span>
+      </div>
+    
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 let celsiusTemperature = null;
