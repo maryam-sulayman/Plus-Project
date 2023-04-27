@@ -111,25 +111,42 @@ function convertToCelsius(event) {
   temperature.innerHTML = Math.round(celsiusTemperature);
 }
 
+function formattedDays(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  return days[day];
+}
+
 function displayForecast(response) {
   console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thur"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col-3">
-      ${day}
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+      ${formattedDays(forecastDay.time)}
         <img
-          src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+          src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastDay.condition.icon
+          }.png"
           width="60px"
         />
-        <span> 18° 23°</span>
+        <span class ="maximum-temperature"> ${Math.round(
+          forecastDay.temperature.maximum
+        )}°  </span>
+        
+       <span class ="minimum-temperature"> ${Math.round(
+         forecastDay.temperature.minimum
+       )}°</span>
       </div>
     
   `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
