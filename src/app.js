@@ -95,22 +95,6 @@ function liveLocation(event) {
   navigator.geolocation.getCurrentPosition(showLiveLocation);
 }
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(fahrenheitTemp);
-}
-function convertToCelsius(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-}
-
 function formattedDays(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -156,18 +140,10 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-let celsiusTemperature = null;
-
 let citySearch = document.querySelector("#city-search");
 citySearch.addEventListener("submit", cityName);
 
 let currentLocation = document.querySelector("#live-location");
 currentLocation.addEventListener("click", liveLocation);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
 
 search("Tokyo");

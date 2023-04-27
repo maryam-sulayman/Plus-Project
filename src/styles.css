@@ -1,5 +1,5 @@
 body {
-  background-image: url("../images/image3.jpg");
+  background-image: url("../images/image1.jpg");
   background-position: right;
 }
 ul {
@@ -49,13 +49,7 @@ a:hover {
   top: -34px;
   margin-left: -10px;
 }
-.temperature .active {
-  color: black;
-  cursor: default;
-}
-.active:hover {
-  text-decoration: none;
-}
+
 .weather-forecast {
   text-align: center;
 }
@@ -69,4 +63,9 @@ a:hover {
 .forecast-temperature-min {
   margin-inline: 5px;
   opacity: 0.6;
+}
+
+.search-button,
+.live-location-button {
+  background-color: rgb(5, 6, 45);
 }
