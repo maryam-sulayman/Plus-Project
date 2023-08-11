@@ -1,6 +1,6 @@
 body {
   background-image: url("../images/image1.jpg");
-  background-position: right;
+  background-position: center;
 }
 ul {
   list-style: none;
@@ -14,10 +14,12 @@ li:first-letter {
 }
 a {
   text-decoration: none;
+  color: blueviolet;
 }
 a:hover {
   text-decoration: underline;
 }
+
 .weather-app-wrapper {
   max-width: 600px;
   margin: 30px auto;
@@ -67,5 +69,9 @@ a:hover {
 
 .search-button,
 .live-location-button {
-  background-color: rgb(5, 6, 45);
+  color: white;
+  background-color: #18193d;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 15px;
 }
